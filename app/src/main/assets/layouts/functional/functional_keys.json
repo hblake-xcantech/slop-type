@@ -14,6 +14,7 @@
     { "$": "keyboard_state_selector", "languageKeyEnabled": { "$": "keyboard_state_selector", "alphabet": { "label": "language_switch" }}},
     { "$": "keyboard_state_selector", "emojiKeyEnabled": { "$": "keyboard_state_selector", "alphabet": { "label": "emoji" }}},
     { "$": "keyboard_state_selector", "symbols": { "label": "numpad" } },
+    { "code": -10060, "label": "✗", "type": "function", "width": 0.1 },
     { "label": "space" },
     { "$": "keyboard_state_selector",
       "symbols": { "$": "keyboard_state_selector", "dpadKeyEnabled": { "label": "dpad" } },

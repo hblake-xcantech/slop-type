@@ -81,6 +81,9 @@ fun SettingsNavHost(
                 onClickBack = ::goBack,
             )
         }
+        composable(SettingsDestination.SlopType) {
+            dev.sloptype.app.ui.SlopSettingsScreen(onClickBack = ::goBack)
+        }
         composable(SettingsDestination.About) {
             AboutScreen(onClickBack = ::goBack)
         }
@@ -147,6 +150,7 @@ fun SettingsNavHost(
 object SettingsDestination {
     const val Settings = "settings"
     const val About = "about"
+    const val SlopType = "slop_type"
     const val TextCorrection = "text_correction"
     const val Preferences = "preferences"
     const val Toolbar = "toolbar"

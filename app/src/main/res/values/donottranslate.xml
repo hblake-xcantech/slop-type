@@ -70,7 +70,8 @@
     <!-- Description for Hebrew 2 subtype. -->
     <string name="subtype_hebrew_1452_2" translatable="false">%s (1452-2)</string>
 
-    <string name="english_ime_name" translatable="false">HeliBoard</string>
+    <string name="english_ime_name" translatable="false">Slop Type</string>
+    <string name="slop_screen_context_description" translatable="false">Lets Slop Type read on-screen text to bias its vocabulary. Never used in password fields or excluded apps; nothing leaves the phone unencrypted.</string>
     <!-- App slogan-->
     <string name="app_slogan" translatable="false">100% FOSS keyboard, based on AOSP.</string>
 

@@ -615,6 +615,7 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
     }
 
     public void processMotionEvent(final MotionEvent me, final KeyDetector keyDetector) {
+        dev.sloptype.app.ime.SlopIme.INSTANCE.onMotion(me, keyDetector.getKeyboard());
         final int action = me.getActionMasked();
         final long eventTime = me.getEventTime();
         if (action == MotionEvent.ACTION_MOVE) {

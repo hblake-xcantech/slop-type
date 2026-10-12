@@ -1,0 +1,3 @@
+# llama.cpp is a git submodule added at the repo root; never commit the clone from here.
+/build/
+/.cxx/

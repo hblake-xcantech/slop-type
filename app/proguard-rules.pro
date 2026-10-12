@@ -12,3 +12,8 @@
 # after upgrading to gradle 8, stack traces contain "unknown source"
 -keepattributes SourceFile,LineNumberTable
 -dontobfuscate
+
+# Slop Type: keep engine/app classes (reflection in DaemonReceiver, serialization)
+-keep class dev.sloptype.** { *; }
+-keepclassmembers class dev.sloptype.** { *; }
+-dontwarn dev.sloptype.**

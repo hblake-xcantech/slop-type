@@ -63,7 +63,7 @@ object Defaults {
     const val PREF_SHOW_EMOJI_DESCRIPTIONS = true
     @JvmField
     var PREF_POPUP_ON = true
-    const val PREF_AUTO_CORRECTION = true
+    const val PREF_AUTO_CORRECTION = false // Slop Type: the engine decides
     const val PREF_MORE_AUTO_CORRECTION = false
     const val PREF_AUTO_CORRECT_CONFIDENCE = 0.24f
     const val PREF_AUTOCORRECT_SHORTCUTS = true
@@ -114,7 +114,7 @@ object Defaults {
     const val PREF_AUTOSPACE_BEFORE_GESTURE_TYPING = true
     const val PREF_SHIFT_REMOVES_AUTOSPACE = false
     const val PREF_ALWAYS_INCOGNITO_MODE = false
-    const val PREF_BIGRAM_PREDICTIONS = true
+    const val PREF_BIGRAM_PREDICTIONS = false // Slop Type: no 3-word bar
     const val PREF_SUGGEST_PUNCTUATION = false
     const val PREF_SUGGEST_CLIPBOARD_CONTENT = true
     const val PREF_GESTURE_INPUT = true

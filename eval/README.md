@@ -1,0 +1,197 @@
+# eval/ — Slop Type evaluation harness
+
+Python 3.11+, standard library only. Everything here is built against the contracts in
+`DESIGN.md` ("Log schema", "Engine CLI", "Keyboard geometry", "Eval harness"). Nothing in
+this directory touches the Android build.
+
+```
+eval/
+  geometry.py     KeyboardGeometry JSON load/save + Pixel 10 Pro portrait QWERTY generator
+  synth.py        typo simulator: sentences -> log-schema touch traces (noise profiles)
+  engines.py      engine adapters: --engine mock | jar:<engine-cli.jar> | cmd:<command>
+  replay.py       trace -> engine -> align decisions with `truth` -> per-word CSV + metrics
+  metrics.py      metric definitions (primary metric lives here)
+  guard.py        guard set (data/guard.jsonl) that must never regress; exit 1 on failure
+  promote.py      promotion rule: PROMOTE / REJECT with reasons
+  bench.py        trigger the in-app tier benchmark over adb and collect latest.json
+  run_eval.py     one-shot: --synthetic or --logs <dir>, writes out/<timestamp>/metrics.json
+  run_all.sh      smoke test: synth -> replay -> guard -> run_eval -> promote (vs itself)
+  common.py       JSONL IO, tokenisation, the truth/commit matching rule
+  data/
+    sentences.txt                 ~700 original everyday/tech/rare-word sentences
+    geometry/pixel10pro_qwerty.json  generated layout (the app's EXPORT_GEOMETRY replaces it)
+    guard.jsonl                   65 guard cases
+    lexicon.txt                   the mock engine's vocabulary (generated, English only)
+  out/                            all outputs (git-ignored)
+```
+
+## Quick start
+
+```sh
+eval/run_all.sh                                   # whole pipeline with the mock engine (~10 s)
+eval/run_all.sh --engine jar:engine/build/libs/engine-cli.jar --config engine/src/main/resources/engine-default.json
+```
+
+Individual steps:
+
+```sh
+python3 eval/geometry.py generate                         # writes data/geometry/pixel10pro_qwerty.json if missing
+python3 eval/synth.py --profile sloppy --seed 1 --out eval/out/sloppy.jsonl
+python3 eval/synth.py --profile novel-heavy --n 200 --shuffle --sigma-x 0.3 --out eval/out/nh.jsonl
+python3 eval/replay.py --trace eval/out/sloppy.jsonl --engine mock --out-csv w.csv --out-json m.json
+python3 eval/guard.py --engine jar:engine-cli.jar --config engine.json --out guard.json
+python3 eval/run_eval.py --synthetic --engine mock                # eval/out/<timestamp>/metrics.json + table
+python3 eval/run_eval.py --logs ~/decrypted-logs --engine jar:engine-cli.jar --config engine.json \
+        --novel-from-lexicon path/to/en_unigrams.txt
+python3 eval/promote.py --baseline base/metrics.json --candidate cand/metrics.json --guard cand/guard.json \
+        --max-p95-ms 120 --max-cost-per-1k 0.02
+python3 eval/bench.py --out eval/out/bench.json              # needs adb + root on the phone
+python3 eval/engines.py decode --engine mock --trace t.jsonl   # prints decision lines like the CLI
+```
+
+All scripts work with `python3 -I` (they add their own directory to `sys.path`).
+
+## Engine specs
+
+| `--engine`            | what runs                                                                 |
+|-----------------------|---------------------------------------------------------------------------|
+| `mock`                | Python decoder in `engines.py` (no jar needed; see below)                 |
+| `jar:<path>`          | `java -jar <path> decode --config <cfg> --trace <trace>`; stdout parsed    |
+| `cmd:<shell command>` | any command; `--config <cfg> --trace <trace>` are appended                |
+
+`--engine-args '--tier2 none'` appends extra flags to an external engine. Output lines
+must match the CLI contract: `{"i","typed","commit","kind","conf","alts","retro","ms"}` plus
+a trailing `{"summary": {...}}`. Optional `tier` and `sid` fields are used when present
+(tier mix; session grouping), otherwise `i` (event index) resolves the session.
+
+### The mock engine
+
+Literal = the key codes as resolved by the keyboard. In-vocabulary literal → KEEP (unless a
+one-edit candidate beats it by `keep_margin` on frequency + spatial fit, which gives the mock
+realistic wrong autocorrects on rare words typed off-centre). OOV literal → candidates within
+one edit (neighbour/far substitution, transposition, missing/extra letter) plus same-length
+words reachable by neighbour substitutions only, scored by unigram log-frequency + per-tap
+Gaussian + edit penalty. If the taps are precise (mean residual offset after removing the
+per-word mean ≤ `precise_threshold` key units) and the best candidate only differs by
+"deliberate" edits (neighbour substitution / extra letter) → NOVEL (kept), unless the
+candidate is a very common word (`tge` → `the`). Otherwise CORRECT.
+
+Config (optional JSON): `personalLexicon: [...]` (also honoured by guard.py for the real
+engine), `mock: {sigma_keys, precise_threshold, freq_weight, keep_margin, common_floor, lexicon}`.
+The vocabulary is `data/lexicon.txt`, regenerated by `engines.py build-lexicon` from the
+sentence corpus plus ~400 core words, minus the synthetic novel-word seeds.
+
+## Synthetic data (`synth.py`)
+
+Per character: `touch` down, `touch` up, `key` (code = the key whose rect contains the noisy
+point, nearest key for gaps; taps that would land on a non-letter key are snapped to the
+nearest letter so words are never split). Each sentence ends with its punctuation key and a
+space; a `truth` event follows every sentence with the last ≤ 240 chars of the session text
+(like the app) plus `novel: [...]` for the novel words of that sentence. Sessions group 2–5
+sentences. Capitalised letters mid-sentence get a shift tap; sentence starts are auto-caps.
+Inter-key time is log-normal around 180 ms. No `backspace` is ever emitted.
+
+Noise model (all flags, seeded):
+
+| parameter      | meaning                                                         | sloppy default |
+|----------------|-----------------------------------------------------------------|----------------|
+| sigma_x/y      | per-tap Gaussian, fraction of key width / height                | 0.25 / 0.30    |
+| drift_step/max | posture offset random walk per tap, clamp (key units)           | 0.02 / 0.12    |
+| skew           | trapezoid skew: offset at the keyboard edges, linear in x       | 0.08           |
+| rotation       | per-session rotation around the keyboard centre (rad)           | 0.01           |
+| p_neighbor     | fat finger: tap lands on a random point of a neighbouring key   | 0.015          |
+| p_transpose / p_omit / p_double / p_insert | character slips                      | .006/.008/.005/.004 |
+| novel_rate     | fraction of eligible words replaced by novel words              | 0.02           |
+| novel_sigma_scale | novel words are typed precisely (sigma × this)               | 0.4            |
+
+Profiles: `clean`, `sloppy` (default), `very-sloppy`, `novel-heavy` (novel_rate 0.15).
+Share of words whose literal differs from the truth, seed 1: clean 4.5 %, sloppy ~40 %,
+very-sloppy ~73 %, novel-heavy ~36 %.
+
+Novel words come from a seed list (`omarchy`, `flexnet`, `kubeflowy`, names, …) and a
+syllable generator, never collide with corpus words, and replace lowercase words of ≥ 4
+letters (capitalised words become capitalised names).
+
+## Alignment and matching (`replay.py`)
+
+Per session the engine's decisions (in order) are aligned to the truth words with a
+Needleman–Wunsch alignment on typed/commit-vs-truth edit distance, so a split or merged word
+only costs that word. Truth windows are de-overlapped (each `truth` event carries a suffix of
+the session text). A word is **correct** if `commit == truth` ignoring trailing punctuation,
+case-insensitively unless the truth word is capitalised (then exact). A truth word is
+**novel** if the `truth` event lists it in `novel`, or with `--novel-from-lexicon` if it is
+not in that lexicon (for real logs).
+
+## Metrics (`metrics.py`)
+
+Per truth word unless stated. Outcome classes per word: `keep_ok`, `keep_missed`, `fix_ok`,
+`fix_bad`, `wrong_autocorrect`, `novel_kept`, `novel_lost`, `unaligned`, `extra_decision`.
+
+| metric                    | definition                                                    |
+|---------------------------|---------------------------------------------------------------|
+| `words`                   | truth words                                                   |
+| `typed_error_rate`        | literal ≠ truth / words (how hard the input was)              |
+| `corrections_per_word`    | decisions with commit ≠ typed / words                          |
+| `wrong_autocorrect_rate`  | typed was correct, engine changed it / words                   |
+| `missed_correction_rate`  | typed was wrong, engine kept it / words                        |
+| `bad_fix_rate`            | typed wrong, changed, still wrong / words                      |
+| `correct_fix_rate`        | typed wrong and commit correct / typed wrong                   |
+| `novel_word_preservation` | novel words whose commit is correct / novel words (1 if none)  |
+| `word_error_rate_after`   | words whose commit is wrong (+ unaligned) / words              |
+| `backspaces_per_word`     | Σ `backspace.count` / words (real logs)                         |
+| `latency_p50_ms`, `p95`   | percentiles of `ms` per decision                               |
+| `cost_per_1k_words`       | Σ `remote.costUsd` / words × 1000                              |
+| `tier_mix`, `kind_mix`    | fraction of decisions per tier / DecisionKind                  |
+
+**Primary metric** (lower is better):
+
+```
+primary = wrong_autocorrect_rate * 2 + missed_correction_rate + (1 - novel_word_preservation)
+```
+
+Wrong autocorrects weigh double: they destroy correct input and cost a revert. A missed
+correction costs only what a plain keyboard would. Losing novel words is the failure mode
+autocorrect is hated for, so it enters at full weight.
+
+## Guard set (`guard.py`, `data/guard.jsonl`)
+
+```
+{"id": "typo-teh", "context": "I think", "typed": "teh", "touches": "precise|sloppy|null",
+ "expect": "the", "personal": ["hblake"], "note": "..."}
+```
+
+`typed` is what the user aims at; the taps are synthesised with a fixed seed (`precise` =
+sigma 0.1 key, `sloppy` = 0.35, `null` = no touch events) so the literal of a sloppy case
+is whatever the taps resolve to (shown in the report). Cases are grouped by `personal` and
+each group is one engine run with `personalLexicon` added to the config. 65 cases: common
+words (KEEP), classic typos (`teh`, `adn`, `recieve`, …), typos without touch data, precise
+novel words that must survive (`omarchy`, `flexnet`, `zxlib`, `hblake`, `xcantech`,
+`sloptype`, `heliboard`, `kubectl`, `asdf`, `Okonkwo`), personal-lexicon words typed
+sloppily, and sloppy taps around common words that must be fixed. Exit 1 on any failure.
+
+## Promotion rule (`promote.py`)
+
+PROMOTE iff **all** hold, otherwise REJECT (exit 1):
+
+1. `candidate.primary <= baseline.primary - min_improvement` (default `--min-improvement 0`,
+   i.e. not worse; the autopilot should demand a real improvement, e.g. `0.002`);
+2. zero guard failures (or, with `--baseline-guard … --allow-known-failures`, no case that
+   passed on the baseline fails now);
+3. `latency_p95_ms <= --max-p95-ms` (default 120);
+4. `cost_per_1k_words <= --max-cost-per-1k` (default 0.02 USD);
+5. `words >= --min-words` (default 500).
+
+## Benchmark (`bench.py`)
+
+`adb shell am broadcast -a dev.sloptype.BENCH_RUN`, then polls
+`adb shell su -c 'cat /data/data/dev.sloptype/files/bench/latest.json'` and writes it to
+`--out`. The expected JSON (per tier/model: `p50`, `p95`, `n`, `errors`, `costUsd`, plus
+`network: wifi|cell`) is documented in the module docstring. `--dry-run` prints the commands.
+
+## Real logs
+
+Decrypt the `.jsonl.age` files from `slop-type-data/logs/<device>/<date>/` into a directory
+and run `run_eval.py --logs <dir> --engine jar:… --config …`. Real logs contain `backspace`,
+`remote`, `decision` and `revert` events; the harness recomputes decisions through the engine
+and ignores the logged ones, counts backspaces and remote cost from the events, and aligns
+against the `truth` windows.

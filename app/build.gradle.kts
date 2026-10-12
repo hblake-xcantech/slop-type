@@ -10,16 +10,29 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "helium314.keyboard"
-        minSdk = 21
+        applicationId = "dev.sloptype"
+        minSdk = 28
         targetSdk = 37
-        versionCode = 4201
-        versionName = "4.2"
+        versionCode = 1
+        versionName = "0.1.0"
         ndk {
             abiFilters.clear()
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+            // Slop Type ships for arm64 only (llamabridge is arm64-only; the target device is a Pixel)
+            abiFilters.addAll(listOf("arm64-v8a"))
         }
         proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    }
+
+    signingConfigs {
+        create("sloptype") {
+            val ks = System.getenv("SLOPTYPE_KEYSTORE")
+            if (ks != null && File(ks).exists()) {
+                storeFile = File(ks)
+                storePassword = System.getenv("SLOPTYPE_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("SLOPTYPE_KEY_ALIAS") ?: "sloptype"
+                keyPassword = System.getenv("SLOPTYPE_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
@@ -28,8 +41,10 @@ android {
             isShrinkResources = false
             isDebuggable = false
             isJniDebuggable = false
+            signingConfig = if (System.getenv("SLOPTYPE_KEYSTORE") != null) signingConfigs.getByName("sloptype") else signingConfigs.getByName("debug")
         }
         create("nouserlib") { // same as release, but does not allow the user to provide a library
+            matchingFallbacks += listOf("release")
             isMinifyEnabled = true
             isShrinkResources = false
             isDebuggable = false
@@ -43,10 +58,12 @@ android {
             applicationIdSuffix = ".debug"
         }
         create("runTests") { // build variant for running tests on CI that skips tests known to fail
+            matchingFallbacks += listOf("debug")
             isMinifyEnabled = false
             isJniDebuggable = false
         }
         create("debugNoMinify") { // for faster builds in IDE
+            matchingFallbacks += listOf("debug")
             isDebuggable = true
             isMinifyEnabled = false
             isJniDebuggable = false
@@ -66,7 +83,7 @@ android {
             }
             variant.outputs.forEach { output ->
                 if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    output.outputFileName = "HeliBoard_${defaultConfig.versionName}-${variant.buildType}.apk"
+                    output.outputFileName = "SlopType_${defaultConfig.versionName}-${variant.buildType}.apk"
                 }
             }
         }
@@ -116,6 +133,14 @@ android {
 }
 
 dependencies {
+    // Slop Type
+    implementation(project(":engine"))
+    implementation(project(":agekt"))
+    implementation(project(":llamabridge"))
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("androidx.browser:browser:1.8.0")
+
     // androidx
     implementation("androidx.core:core-ktx:1.17.0") // 1.18.0 requires minSdk 23
     implementation("androidx.recyclerview:recyclerview:1.4.0")

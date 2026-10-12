@@ -1191,7 +1191,7 @@ public class Key implements Comparable<Key> {
                 actionFlags |= ACTION_FLAGS_NO_KEY_PREVIEW;
             switch (mCode) {
             case KeyCode.DELETE, KeyCode.ARROW_LEFT, KeyCode.ARROW_RIGHT, KeyCode.ARROW_UP, KeyCode.ARROW_DOWN,
-                    KeyCode.WORD_LEFT, KeyCode.WORD_RIGHT, KeyCode.PAGE_UP, KeyCode.PAGE_DOWN:
+                    KeyCode.WORD_LEFT, KeyCode.WORD_RIGHT, KeyCode.PAGE_UP, KeyCode.PAGE_DOWN, KeyCode.MISTAKE:
                 // repeating is disabled if a key is configured with pop-ups
                 if (mPopupKeys == null)
                     actionFlags |= ACTION_FLAGS_IS_REPEATABLE;

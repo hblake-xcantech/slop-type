@@ -21,6 +21,7 @@ import helium314.keyboard.latin.utils.JniUtils
 import helium314.keyboard.latin.utils.SubtypeLocaleUtils.displayName
 import helium314.keyboard.latin.utils.SubtypeSettings
 import helium314.keyboard.latin.utils.NextScreenIcon
+import helium314.keyboard.settings.SettingsDestination
 import helium314.keyboard.settings.SearchSettingsScreen
 import helium314.keyboard.latin.utils.Theme
 import helium314.keyboard.settings.initPreview
@@ -54,6 +55,11 @@ fun MainSettingsScreen(
             Column(
                 Modifier.verticalScroll(rememberScrollState()).then(Modifier.padding(innerPadding))
             ) {
+                Preference(
+                    name = "Slop Type",
+                    onClick = { SettingsDestination.navigateTo(SettingsDestination.SlopType) },
+                    icon = R.drawable.ic_settings_correction
+                ) { NextScreenIcon() }
                 Preference(
                     name = stringResource(R.string.language_and_layouts_title),
                     description = enabledSubtypes.joinToString(", ") { it.displayName() },

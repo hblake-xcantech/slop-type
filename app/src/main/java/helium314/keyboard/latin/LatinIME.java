@@ -1006,6 +1006,11 @@ public class LatinIME extends InputMethodService implements
             }
         }
 
+        // Slop Type: start the engine's field session once the keyboard is loaded
+        dev.sloptype.app.ime.SlopIme.INSTANCE.setLateEditApplier(d -> { mInputLogic.applyLateDecision(d); return kotlin.Unit.INSTANCE; });
+        dev.sloptype.app.ime.SlopIme.INSTANCE.onStartInputView(editorInfo, mainKeyboardView.getKeyboard(),
+                mInputLogic.mConnection.getTextBeforeCursor(240, 0));
+
         mainKeyboardView.setMainDictionaryAvailability(mDictionaryFacilitator.hasAtLeastOneInitializedMainDictionary());
         mainKeyboardView.setKeyPreviewPopupEnabled(currentSettingsValues.mKeyPreviewPopupOn);
         mainKeyboardView.setSlidingKeyInputPreviewEnabled(currentSettingsValues.mSlidingKeyInputPreviewEnabled);
@@ -1053,6 +1058,7 @@ public class LatinIME extends InputMethodService implements
     void onFinishInputViewInternal(final boolean finishingInput) {
         super.onFinishInputView(finishingInput);
         Log.i(TAG, "onFinishInputView");
+        dev.sloptype.app.ime.SlopIme.INSTANCE.onFinishInputView(mInputLogic.mConnection.getTextBeforeCursor(240, 0));
         cleanupInternalStateForFinishInput();
     }
 
@@ -1088,6 +1094,7 @@ public class LatinIME extends InputMethodService implements
         if (isInputViewShown()
                 && mInputLogic.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd,
                 composingSpanStart, composingSpanEnd, settingsValues)) {
+            dev.sloptype.app.ime.SlopIme.INSTANCE.onCursorMoved(mInputLogic.mConnection.getTextBeforeCursor(240, 0));
             // we don't want to update a manually set shift state if selection changed towards one side
             // because this may end the manual shift, which is unwanted in case of shift + arrow keys for changing selection
             // todo: this is not fully implemented yet, and maybe should be behind a setting

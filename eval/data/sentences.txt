@@ -1,0 +1,694 @@
+Are you still coming to dinner tonight or should I cancel the booking?
+I left my keys on the kitchen counter again, can you grab them?
+The meeting got moved to Thursday afternoon because Sarah is out sick.
+Let me know when you land and I will pick you up from the airport.
+We should probably talk about the budget before the end of the month.
+Did you see the message Marcus sent about the new office layout?
+I think the dog ate half of the sandwich while we were outside.
+Can you send me the link to that article you mentioned yesterday?
+Honestly I have no idea what time the train leaves tomorrow morning.
+The weather looks awful for the weekend so maybe we stay in.
+Priya said the client wants the report by Friday at the latest.
+My phone battery is almost dead so I might go quiet for a bit.
+Thanks for covering my shift, I owe you a coffee or two.
+Just finished the hike and my legs feel like jelly right now.
+Could you water the plants while I am away next week?
+The kids have soccer practice at four and piano at six.
+I will be about ten minutes late, the traffic is terrible today.
+That restaurant on the corner finally reopened after the renovation.
+We ran out of milk again so I added it to the shopping list.
+Remind me to call the dentist first thing on Monday morning.
+Jonas wants to know if the spare room is free this weekend.
+Sorry I missed your call, I was stuck in a meeting all afternoon.
+The package arrived but the box was completely crushed on one side.
+Have you tried turning the router off and on again?
+The deploy failed again because the database migration timed out.
+I pushed the fix to the branch, can you review the pull request?
+Our kubernetes cluster keeps evicting pods when memory gets tight.
+The compiler warning is harmless but it clutters the build log.
+Did you update the firmware on the thermostat like the manual said?
+The cache invalidation bug only shows up under heavy load.
+Let's pair on the authentication flow after lunch if you have time.
+The gradle build takes forever since we added the new modules.
+I think the regression was introduced by the refactor last Tuesday.
+Please rotate the api keys before we hand the project over.
+The wifi in the conference room drops every few minutes.
+Elena's presentation on the new pricing model went really well.
+We need to migrate the old scripts from python two before the deadline.
+The server logs show a spike in latency around midnight every night.
+Can someone restart the staging environment, it looks frozen again.
+The docker image is huge because it ships the whole toolchain.
+I merged your changes but the integration tests are still flaky.
+My laptop fan sounds like a jet engine whenever I open the editor.
+The json payload is missing the user id field on the second request.
+Bluetooth keeps disconnecting from my headphones in the car.
+The kernel update broke the graphics driver on my desktop.
+Tom bought a new bike and now he rides to work every day.
+Aisha is flying to Lisbon next month for a wedding.
+Diego said the surf was incredible this morning down at the point.
+Mei finally got her driving licence after the third attempt.
+Oliver forgot his lunch at home so I shared mine with him.
+Hannah is thinking about adopting a second cat from the shelter.
+Raj and Lucas are organising the office party in December.
+Nadia's flight got cancelled so she is stuck in Chicago overnight.
+Grandma called to say the garden is full of tomatoes this year.
+Uncle Peter is coming to visit for a week in October.
+The serendipity of running into you at the station made my day.
+His explanation was so convoluted that nobody understood the plan.
+The old library has a melancholy charm that I find irresistible.
+She has an uncanny ability to remember every birthday in the office.
+The committee reached a tentative agreement after hours of debate.
+That was an egregious error and someone needs to own it.
+The ephemeral nature of the app's popularity surprised the investors.
+There is a certain ambiguity in the contract that worries me.
+The lecture on quantum entanglement went completely over my head.
+Her meticulous notes saved us when the audit came around.
+What a cacophony of car horns outside the hotel this morning.
+The negotiation was tedious but ultimately quite productive.
+He gave a surprisingly eloquent speech at the retirement party.
+The ubiquitous coffee chains have pushed out the small cafes downtown.
+Our neighbour's parrot has learned to mimic the doorbell perfectly.
+I'm running late, start without me and save me a seat.
+Don't forget to lock the back door when you leave tonight.
+It's probably fine but let's double check the numbers anyway.
+We're almost out of printer paper in the upstairs office.
+You've got mail from the insurance company sitting on the table.
+I can't believe it's already November, this year flew by.
+She's bringing dessert so we only need to sort out the main course.
+They're repaving the road outside so expect noise all week.
+Who's picking up the kids from school on Wednesday?
+That's the third time this month the elevator has broken down.
+Hey, are we still on for the movie tonight?
+Yes please, two sugars and a splash of milk.
+No worries at all, take your time with it.
+Sure thing, I will send it over in a few minutes.
+Okay sounds good, see you at the cafe around noon.
+Nope, haven't heard anything from them since last week.
+Cool, let me check with Sam and get back to you.
+Ugh, the bus just drove past without stopping.
+Wow, that view from the balcony is absolutely stunning.
+Haha, that is exactly what my brother would say.
+The new cafe on Elm Street does a decent flat white.
+I need to renew my passport before the trip to Japan in spring.
+The landlord finally agreed to fix the leaking tap in the bathroom.
+We watched a documentary about octopuses and it was fascinating.
+My sister is training for a marathon in April so she runs every morning.
+The garden needs weeding badly but it keeps raining every weekend.
+Our book club is reading a long Russian novel this month.
+The mechanic said the brakes need replacing before winter.
+I found a great recipe for lentil soup that takes twenty minutes.
+The museum has a new exhibit on ancient Egyptian jewellery.
+Could you proofread my cover letter before I send it off?
+The interview went okay but I stumbled on the salary question.
+Our team lead is moving to the Berlin office in January.
+The quarterly numbers look better than anyone expected.
+I have back to back meetings until three so lunch is off.
+The intern wrote a script that saves us an hour every morning.
+Please add the vendor invoice to the shared folder when you get a chance.
+The board wants a one page summary of the roadmap by tomorrow.
+We hired two new engineers for the platform team last week.
+HR sent around the updated holiday policy this morning.
+The printer on the second floor is jammed again.
+Can you forward me the agenda for the Monday standup?
+The contractor quoted way more than we budgeted for the kitchen.
+Let's schedule the retrospective for Friday afternoon instead.
+The new hire seems sharp but a bit shy in meetings.
+Reminder that timesheets are due by five today.
+The projector in room four needs a new bulb.
+Lunch is on the company today to celebrate the launch.
+I will be working from home on Thursday because of the plumber.
+The client loved the mockups but wants the logo bigger of course.
+The quarterly review has been pushed to next week.
+I accidentally replied all to the whole department, how embarrassing.
+Sorry for the late notice but I need to take tomorrow off.
+Can we move our one on one to later in the afternoon?
+The parking garage is closed for maintenance until Monday.
+The coffee machine on our floor is finally fixed.
+Please remember to badge in when you enter the building.
+We are out of sticky notes and whiteboard markers again.
+The elevator inspection is scheduled for Tuesday morning.
+Good morning, how did the presentation go yesterday?
+I baked banana bread and left some in the kitchen for everyone.
+Happy birthday Lucas, hope you have a wonderful day.
+Congratulations on the new job, you totally deserve it.
+Get well soon, we miss you around the office.
+Safe travels and send us pictures from the beach.
+Thank you so much for the thoughtful gift, it was perfect.
+Welcome to the team, we are glad to have you aboard.
+Merry Christmas and a happy new year to you and the family.
+Good luck with the exam tomorrow, you have got this.
+The python script crashed with a key error on the config file.
+We should add a retry with exponential backoff to the upload client.
+The memory leak was in the image decoder all along.
+The linter complains about unused imports in half the files.
+The new monitoring dashboard shows latency per endpoint.
+Our github actions workflow is failing on the lint step.
+The android build needs the newer sdk to compile the new library.
+I set up a cron job to rotate the logs every night at two.
+The ssh key on the build server expired over the weekend.
+The database index was missing so every query did a full scan.
+The unit tests pass locally but fail in the ci pipeline.
+We should deprecate the old endpoint before removing it entirely.
+The kotlin coroutine was cancelled before the response arrived.
+The javascript bundle doubled in size after the last dependency bump.
+Please pin the library version so the build is reproducible.
+The react component rerenders on every keystroke which is slow.
+The proxy strips the authorization header for some reason.
+The rust compiler caught a lifetime bug I would never have noticed.
+Our postgres instance is running out of disk space again.
+The nginx config has a typo in the upstream block.
+I spent the whole afternoon debugging a race condition in the scheduler.
+The firmware flasher needs root access on the device.
+The adb connection keeps dropping when the phone goes to sleep.
+The release apk is signed with the wrong keystore.
+The encryption library throws on an empty payload.
+Please squash the commits before merging to main.
+The backend returns a five hundred when the username has a space.
+The microservice architecture is costing us more than the monolith did.
+We benchmarked the new parser and it is three times faster.
+The terminal emulator crashes when I paste a very long line.
+The vpn client refuses to connect over the hotel wifi.
+The podcast episode about deep sea exploration was gripping.
+I am learning to play the ukulele and my neighbours are suffering.
+The farmers market had the best peaches I have tasted all summer.
+We planted a cherry tree in the backyard for the anniversary.
+The ferry was delayed by fog so we missed the first tour.
+My nephew built an entire castle out of cardboard boxes.
+The yoga class was packed so I ended up in the back row.
+The bakery sells out of croissants by nine every Saturday.
+The hotel pool was closed for cleaning the entire weekend.
+The thunderstorm knocked out power for most of the evening.
+I finally fixed the squeaky hinge on the bedroom door.
+The flea market had a vintage typewriter that still works.
+Our tomato plants are drowning in all this rain.
+The campsite was quiet except for a very loud owl.
+We rented a cabin by the lake with no cell signal at all.
+The trail was muddy but the waterfall at the end was worth it.
+The sunset over the harbour was unbelievably orange tonight.
+Our cat knocked the vase off the shelf at three in the morning.
+The new bike lane makes the commute so much safer.
+The kids built a snowman that is taller than me.
+The library extended its opening hours for exam season.
+The chess club meets every Wednesday in the community hall.
+The aquarium's new jellyfish tank is mesmerising.
+The street festival closed the whole avenue for the day.
+I burnt the rice again because I got distracted by a phone call.
+The curry needs more chilli and maybe a squeeze of lime.
+The sourdough starter finally bubbled up after a week of feeding.
+We tried the Ethiopian place downtown and the injera was fantastic.
+My grandmother's dumpling recipe calls for a pinch of white pepper.
+The pizza oven takes an hour to heat up but it is worth it.
+I made too much pasta so there are leftovers in the fridge.
+The soup tastes bland, maybe add some miso or soy sauce.
+The barbecue is on Sunday if the rain holds off.
+We should try that new ramen shop near the station.
+The doctor said it is just a sprain and to rest it for a week.
+The pharmacy closes early on Sundays so pick up the prescription today.
+My allergies are terrible this spring with all the pollen.
+The physio gave me stretches to do twice a day.
+I slept badly and now I have a headache that will not quit.
+The gym was empty at six in the morning which was lovely.
+The dentist found a small cavity that needs filling next month.
+The vaccine appointment took five minutes from start to finish.
+The optician says I need a slightly stronger prescription.
+I have been drinking too much coffee and my hands are shaking.
+Could you check whether the invoice from the plumber was paid?
+The rent is due on the first and the account looks a bit thin.
+The electricity bill was double last month because of the heater.
+We should compare insurance quotes before renewing in March.
+The bank flagged the transaction as suspicious and froze the card.
+I transferred the money for the concert tickets this morning.
+The mortgage rate went up again so the payment will be higher.
+The accountant needs the receipts from the conference trip.
+The subscription renewed automatically and I forgot to cancel it.
+The tax return is due next week and I have not started.
+The flight to Denver was delayed by three hours due to a storm.
+We are driving up the coast and stopping at every lighthouse.
+The hotel upgraded us to a room with a view of the mountains.
+I always forget to pack a charger and end up buying one at the airport.
+The train through the Alps was the highlight of the whole trip.
+The hostel in Porto had a rooftop terrace with a view of the river.
+Customs took forever because the queue was out the door.
+The rental car had a flat tyre before we even left the lot.
+The guide book recommended a tiny noodle shop that was incredible.
+The overnight bus was rough but we saved a night of hotel costs.
+The toddler refused to nap and now the evening is going to be rough.
+The school sent a note about the field trip to the science museum.
+My daughter lost her first tooth and is very proud of it.
+The baby finally slept through the night for the first time.
+The teenager wants a later curfew and we are negotiating.
+Our son made the swim team and practice is at six every morning.
+The twins have a birthday party on Saturday at the trampoline park.
+The parent teacher meeting is on Thursday at half past five.
+The babysitter cancelled so I have to leave the meeting early.
+The kids want a puppy and I am running out of excuses.
+The quarterback threw three interceptions in the first half.
+The marathon route goes right past our front door.
+The tennis final went to five sets and lasted almost five hours.
+Our pub quiz team came second again by a single point.
+The climbing gym opened a new bouldering wall last week.
+The basketball game went into double overtime last night.
+The cycling club does a forty kilometre loop on Sundays.
+The swimming pool is closed for a competition this weekend.
+I signed up for a triathlon and now I regret everything.
+The football match was postponed because the pitch was flooded.
+The novel's ending was ambiguous and I am still thinking about it.
+The documentary about coral reefs was beautiful but depressing.
+The band played for three hours and did two encores.
+The gallery opening was crowded but the sculptures were striking.
+The theatre production of the play was surprisingly funny.
+The new album is a departure from their earlier sound.
+The film festival lineup looks strong this year.
+The orchestra performed a symphony I had never heard before.
+The comedian's set about airports had everyone in tears.
+The poetry reading at the bookshop was intimate and moving.
+The town council approved the new playground by the river.
+The recycling truck comes on Tuesdays now instead of Mondays.
+The local bakery is closing after forty years in business.
+The community garden has a waiting list for plots.
+The roadworks on Main Street will last until the end of August.
+The neighbourhood watch meeting is in the church hall tonight.
+The new supermarket is opening where the old cinema used to be.
+The council is finally fixing the potholes on our street.
+The annual street party raised money for the animal shelter.
+The library is hosting a coding workshop for teenagers next week.
+The lighthouse keeper's cottage is now a tiny museum.
+The old mill by the river has been converted into apartments.
+The vineyard tour ended with a tasting of six different wines.
+The ski resort opened early because of heavy snow in November.
+The botanical garden has a greenhouse full of carnivorous plants.
+The castle on the hill is lit up every evening in summer.
+The monastery brews its own beer and sells it at the gate.
+The canyon trail is closed after a rockfall last week.
+The observatory opens to the public on clear Friday nights.
+The cathedral's stained glass glows in the late afternoon.
+The algorithm's complexity is quadratic in the worst case.
+The hypothesis was refuted by the second round of experiments.
+The spectrometer needs recalibrating after the power outage.
+The enzyme catalyses the reaction at surprisingly low temperatures.
+The telescope captured an image of a galaxy twelve billion light years away.
+The sediment layers record thousands of years of climate change.
+The vaccine trial enrolled participants across four continents.
+The fossil was identified as a previously unknown species of lizard.
+The simulation predicts a modest rise in sea level by the end of the century.
+The paper's methodology was criticised for its small sample size.
+Sorry, wrong number, I was trying to reach the bakery.
+Can you hear me now, the signal was breaking up before.
+I will text you the address once I find it.
+Just checking in, how are you feeling today?
+Running a few minutes behind, order me the usual please.
+Are you free for a quick call around three?
+Let me know if the attachment opens on your end.
+Could you resend that, the file seems to be corrupted.
+Got it, thanks, I will take a look this evening.
+Perfect, see you then, bring the camera if you can.
+The obsequious waiter kept refilling our glasses every two minutes.
+Her sanguine outlook on the project was contagious in the best way.
+The verdant hills behind the village were dotted with sheep.
+The archipelago is home to several species found nowhere else.
+His laconic reply told us everything we needed to know.
+The quintessential summer evening ended with fireworks over the bay.
+The juxtaposition of old and new architecture is striking downtown.
+The perfunctory inspection missed the crack in the foundation.
+The labyrinthine corridors of the old hospital are easy to get lost in.
+There was a palpable tension in the room after the announcement.
+The pragmatic approach is to ship the fix now and refactor later.
+The nascent startup scene in the city is growing quickly.
+The ostentatious decorations seemed out of place at a charity event.
+Her idiosyncratic handwriting is impossible to read in a hurry.
+The resilient little plant survived a month without water.
+The cumbersome approval process delayed the launch by a quarter.
+A fortuitous meeting at the conference led to the partnership.
+His vociferous objections were noted and then politely ignored.
+The scrupulous auditor found every missing receipt.
+The zeitgeist of the decade is captured perfectly in that film.
+The washing machine is making a grinding noise during the spin cycle.
+The dishwasher stopped draining halfway through the cycle.
+The fridge thermostat is broken so everything is slightly frozen.
+The vacuum cleaner lost suction because the filter is clogged.
+The lawn mower would not start after sitting in the shed all winter.
+The boiler pilot light keeps going out when it is windy.
+The smoke alarm chirps every thirty seconds and it is driving me mad.
+The garage door opener needs new batteries in the remote.
+The oven takes twice as long to preheat as it used to.
+The kettle has a lot of limescale, we should descale it.
+Our flight leaves at seven so we need to be at the airport by five.
+The hotel breakfast ends at ten, let's not sleep in.
+Pack a jumper, the evenings get cold up in the mountains.
+Do we need an adapter for the plugs in Italy?
+The travel insurance covers lost luggage up to a certain amount.
+I printed the boarding passes just in case the app fails.
+The taxi driver recommended a seafood place near the port.
+The museum is free on the first Sunday of the month.
+We should book the tour early, it fills up fast in summer.
+The hiking boots gave me blisters on the very first day.
+The quarterly earnings call is scheduled for Thursday morning.
+Marketing wants a new landing page before the campaign launches.
+Sales closed the biggest deal of the year on Friday afternoon.
+Legal is still reviewing the terms of the partnership agreement.
+Finance needs the headcount plan for next year by Wednesday.
+The product team is running user interviews all week.
+Support tickets doubled after the last release went out.
+The design review uncovered several accessibility issues.
+Operations is moving the warehouse to a bigger site in spring.
+The procurement process for new laptops takes about six weeks.
+I think we should paint the living room a warmer shade of grey.
+The new sofa arrives on Tuesday between nine and one.
+We finally hung the pictures that have been leaning against the wall for months.
+The bathroom tiles need regrouting before the mould spreads.
+The attic is full of boxes we have not opened since the move.
+The curtains in the bedroom let in too much light in the morning.
+The bookshelf is sagging under the weight of all the cookbooks.
+The hallway light flickers whenever the washing machine runs.
+We need a bigger table if we are hosting Christmas this year.
+The spare room doubles as an office and a laundry room now.
+Was the plumber supposed to come today or tomorrow?
+Why does the printer only work when nobody is watching?
+Where did you put the spare keys for the garage?
+When is the last day to submit the expense claims?
+How long does the ferry take to get to the island?
+Which bus goes to the hospital from the city centre?
+Who left the fridge door open all night?
+What time does the pharmacy close on a Saturday?
+Is the dentist appointment at two or half past?
+Would you rather go to the beach or the mountains this summer?
+Mia and Noah are getting married in the botanical garden in June.
+Ethan's new apartment has a tiny balcony overlooking the canal.
+Chloe adopted a greyhound that is terrified of the vacuum cleaner.
+Isabella is learning Portuguese before her move to Brazil.
+Liam ran his first half marathon in under two hours.
+Zoe's bakery just got a glowing review in the local paper.
+Benjamin fixed the fence over the weekend with help from his dad.
+Sophia's lecture on medieval trade routes was packed.
+Amelia is volunteering at the food bank every other Saturday.
+Henry got a promotion and is now managing the whole warehouse.
+Charlotte and Jack are renovating a farmhouse in the countryside.
+Mateo's band is playing at the festival next weekend.
+Freya just got back from six months in New Zealand.
+Arjun built a weather station on his roof with a tiny computer.
+Yusuf's restaurant is opening a second location across town.
+Ingrid is training to become a paramedic next year.
+Kenji sent a postcard from Hokkaido covered in snow.
+Fatima's garden won the neighbourhood competition again.
+Lena and Omar bought their first house near the park.
+Santiago is teaching the kids to play chess on Sunday afternoons.
+The function returns null when the list is empty instead of throwing.
+Wrap the call in a try block and log the stack trace properly.
+The config loader ignores unknown keys which is exactly what we want.
+The regex matches too greedily and swallows the whole line.
+Add a unit test for the edge case where the buffer is exactly full.
+The thread pool is exhausted because nobody closes the connections.
+Let's move the retry logic into a shared helper module.
+The interface changed so the mock needs updating in the tests.
+The feature flag defaults to off in production for now.
+The migration adds a nullable column so it should be safe to run live.
+I'll grab lunch and then we can go through the pull request together.
+We'll need a bigger instance if traffic keeps growing like this.
+He'll be in the office on Tuesday if you want to catch him.
+I'd rather fix the root cause than keep patching the symptoms.
+They'd already left by the time I got to the station.
+We've been waiting for the vendor to respond for two weeks.
+You'll love the new coffee place next to the bank.
+She'd mentioned the issue in the standup but nobody followed up.
+It'll take a couple of days for the refund to show up.
+I've never seen the river this high in all my years here.
+The tide comes in fast on that beach so keep an eye on the time.
+The forest trail is shaded most of the way which is a relief in July.
+The night sky out here is so clear you can see the milky way.
+The river froze over for the first time in a decade.
+The wildflowers along the highway are in full bloom right now.
+The desert gets surprisingly cold once the sun goes down.
+The glacier has retreated noticeably since our last visit.
+The storm tore the roof off the old barn across the road.
+The first frost came early and ruined the last of the tomatoes.
+The fog rolled in off the sea and swallowed the whole town.
+Can you believe the game went to penalties after all that?
+The referee missed an obvious foul right before the goal.
+Our striker has scored in six consecutive matches now.
+The stadium was sold out for the derby on Saturday.
+The coach got sent off for arguing with the fourth official.
+The new goalkeeper made three incredible saves in the second half.
+The season ticket prices went up again this year.
+The team bus got stuck in traffic and the kickoff was delayed.
+The youth team won the regional cup for the first time.
+The pitch invasion after the final whistle was wild.
+Let's try that Vietnamese place for lunch, the pho is excellent.
+I ordered the spicy noodles and immediately regretted it.
+The tacos from the truck outside the office are addictive.
+The sushi place by the station does a great lunch deal.
+We cooked paella for twelve people and it actually worked.
+The brunch spot has a two hour wait on Sundays now.
+The falafel wrap from the market stall is my go to lunch.
+The dessert menu had a chocolate fondant that was worth the wait.
+The new vegan burger place is surprisingly good.
+We shared a plate of dumplings and a pot of jasmine tea.
+The thermostat app lost connection to the heating system again.
+The smart bulb in the hallway keeps resetting to bright white.
+The doorbell camera recorded a fox in the garden at midnight.
+The speaker in the kitchen refuses to pair with my phone.
+The robot vacuum got stuck under the sofa for an hour.
+The baby monitor battery dies after about four hours.
+The smart lock jammed and we had to use the physical key.
+The tablet in the kitchen is mostly used for recipes and cartoons.
+The streaming box needs a software update before it will play anything.
+The electric toothbrush charger finally died after five years.
+The presentation needs fewer bullet points and more pictures.
+The spreadsheet formula breaks when the cell is empty.
+The slide deck is forty pages long and nobody will read it.
+The document has tracked changes from four different people.
+The pivot table does not refresh when the source data changes.
+The chart colours are impossible to tell apart in grayscale.
+The template uses a font that nobody has installed.
+The shared drive ran out of space so uploads are failing.
+The calendar invite went to the wrong distribution list.
+The video call froze right when I was about to answer the question.
+I appreciate you taking the time to explain the process.
+Please let me know if there is anything else you need from me.
+I would be happy to help with the onboarding next week.
+Thank you for your patience while we sort this out.
+Apologies for the confusion, the earlier email had the wrong date.
+I look forward to hearing your thoughts on the proposal.
+Kind regards and have a lovely weekend.
+Please find attached the revised version of the contract.
+Just following up on my message from last Tuesday.
+Let me know a time that works and I will send a calendar invite.
+The squirrel has figured out how to open the bird feeder.
+The puppy chewed through another phone charger last night.
+The cat sits on the keyboard whenever I try to work.
+The hamster escaped and we found him in the shoe cupboard.
+The goldfish has outlived two filters and a tank upgrade.
+The parrot learned a new word and it is not a polite one.
+The dog refuses to walk when it is raining even slightly.
+The chickens have started laying again now that the days are longer.
+The horse at the end of the lane loves apples from our tree.
+The neighbour's rabbit keeps digging under the fence into our garden.
+The plumber says the pipes under the sink are original to the house.
+The electrician found a scorched socket behind the fridge.
+The roofer wants to replace half the tiles after the storm.
+The painter finished the exterior in two days which was impressive.
+The carpenter built a bookshelf that fits the alcove perfectly.
+The gardener recommended pruning the apple tree in late winter.
+The locksmith came within twenty minutes of the call.
+The chimney sweep found a bird's nest halfway up the flue.
+The window fitter measured twice and still got the size wrong.
+The tiler left a gap behind the bath that needs sealing.
+The espresso machine at work makes a sound like a dying walrus.
+The office plant has survived despite everyone forgetting to water it.
+The vending machine took my money and gave me nothing.
+The new ergonomic chairs are a huge improvement over the old ones.
+The open plan office is loud but the view is nice at least.
+The kitchenette fridge gets cleaned out every Friday at four.
+The standing desks were a fad for about two weeks.
+The meeting room booking system double booked us again.
+The air conditioning is either arctic or tropical, never in between.
+The bike storage downstairs is finally getting a proper lock.
+We lost power during the storm and the generator would not start.
+The road to the village was blocked by a fallen tree for a day.
+The flood warning was lifted this morning but the fields are still underwater.
+The heatwave pushed temperatures past forty degrees in the valley.
+The drought has left the reservoir at its lowest level in years.
+The blizzard shut down the airport for the better part of a day.
+The hail dented the car roof and cracked a window.
+The wildfire smoke turned the afternoon sky a strange orange.
+The earthquake rattled the shelves but nothing broke.
+The hurricane veered off at the last minute and spared the coast.
+Did you ever finish that puzzle with the thousand tiny pieces?
+Have you seen my blue scarf anywhere in the house?
+Could we push the call to Friday if that works for you?
+Are the tickets for the concert still available online?
+Would it be alright if I borrowed the car on Saturday?
+Should we bring anything to the dinner on Sunday?
+Is there a pharmacy open late near the hospital?
+Can you recommend a good book for a long flight?
+Do you know if the pool is open on public holidays?
+Will the package need a signature when it arrives?
+The vinyl record shop downtown is closing at the end of the year.
+The antique clock on the mantelpiece stopped at midnight.
+The old photographs in the attic are from the nineteen twenties.
+The typewriter still has a ribbon with some ink left in it.
+The radio in the garage only picks up one station.
+The sewing machine belonged to my great grandmother.
+The rotary phone in the hallway is purely decorative now.
+The film camera needs a battery that nobody sells anymore.
+The gramophone works but the needle needs replacing.
+The old maps show a river that no longer exists.
+The autopilot shipped a config change that doubled the correction rate overnight.
+The rollback kicked in after six hours and restored the previous build.
+The nightly job uploads the encrypted logs to the private repo.
+The benchmark shows the remote tier is twice as slow on cellular.
+The keyboard's new decoder handles sloppy thumb typing much better.
+The ghost completion suggested exactly the word I was about to type.
+The personal lexicon learned my colleague's unusual surname after one use.
+The mistake key fixed the wrong word three words back in one tap.
+The eval harness flagged a regression in novel word preservation.
+The router sends ambiguous words to the fast classifier tier.
+I set up omarchy on the spare laptop and it boots in seconds.
+The flexnet licence server went down and nobody could open the cad software.
+We replaced the old zxlib wrapper with a proper binding.
+The kubeflowy pipeline retrains the model every night at three.
+Ask hblake about the deployment script before you run it.
+The xcantech office is on the fourth floor next to the gym.
+The sloptype keyboard learned my dog's name after typing it twice.
+The heliboard fork builds cleanly on the new gradle version.
+Run kubectl get pods to see which containers are restarting.
+The asdf version manager keeps the toolchains in sync across machines.
+The barista remembered my order after only two visits.
+The florist on the corner does lovely arrangements for weddings.
+The butcher recommended a slow cook for that cut of beef.
+The tailor took in the jacket and now it fits perfectly.
+The cobbler resoled my boots for less than the price of new ones.
+The optometrist said my eyes are fine for another two years.
+The pharmacist suggested a different antihistamine for the pollen.
+The librarian found the out of print book through an interlibrary loan.
+The jeweller resized the ring while we waited.
+The upholsterer brought the old armchair back to life.
+The morning commute was a nightmare because of the rail strike.
+The night shift at the hospital is short staffed again this week.
+The weekend market gets crowded after ten so go early.
+The evening class on pottery has a few spots left.
+The afternoon slump hits hard after a big lunch.
+The midnight deadline came and went without a word from the vendor.
+The early flight means a four in the morning alarm.
+The lunchtime run around the park clears my head.
+The late night snack of cheese and crackers was a mistake.
+The dawn chorus outside the window starts at half past four in June.
+I honestly think the sequel was better than the original.
+The soundtrack alone is worth the price of admission.
+The plot twist in the third act caught everyone off guard.
+The cinematography in the desert scenes was breathtaking.
+The lead actor's accent slipped a few times but it was fine.
+The series finale answered almost none of the big questions.
+The remake lost all the charm of the nineties version.
+The animated short before the feature was the best part.
+The trailer gave away the entire plot which was annoying.
+The subtitles were out of sync for the whole second half.
+Tell Grandpa the photos from the reunion are in the shared album.
+Aunt Rosa is bringing her famous lemon cake to the picnic.
+Cousin Felix just started his first year at university in Leeds.
+Dad is convinced the barbecue needs a new gas regulator.
+Mum wants everyone home for lunch on Sunday without excuses.
+My brother in law is training to be a pilot in Arizona.
+The in laws are arriving on Thursday and staying until Monday.
+Our goddaughter turns five next week and wants a unicorn cake.
+The family group chat has been going nonstop about the holiday.
+Grandad's old watch stopped and the repair shop says it is worth fixing.
+The sprint planning meeting ran over by forty minutes.
+The backlog grooming session uncovered three duplicate tickets.
+The demo went smoothly apart from the one broken link.
+The stakeholders want a status update every Friday from now on.
+The roadmap for next quarter is still being argued over.
+The retrospective surfaced a lot of frustration about the on call rota.
+The daily standup is getting too long with the new team members.
+The release notes need a plain language summary for the sales team.
+The incident postmortem is scheduled for Wednesday at eleven.
+The on call phone rang at four in the morning for a false alarm.
+The painting class at the community centre is surprisingly relaxing.
+The woodworking course taught me how to use a chisel properly.
+The language exchange meets at the pub on Thursday evenings.
+The photography walk starts at the old bridge at sunrise.
+The salsa class is harder than it looks on the video.
+The pottery wheel is much harder to control than I expected.
+The knitting circle made blankets for the children's ward.
+The improv workshop was terrifying and brilliant in equal measure.
+The gardening club swaps seedlings every spring.
+The choir is rehearsing for the midsummer concert in the park.
+The autumn leaves along the canal are spectacular this week.
+The spring thaw turned the footpath into a river of mud.
+The summer heat made the attic office unbearable by noon.
+The winter solstice bonfire on the beach is a local tradition.
+The first snow of the year arrived in the middle of the night.
+The cherry blossoms in the park peaked over the weekend.
+The harvest festival had a pumpkin the size of a small car.
+The monsoon rains arrived two weeks later than usual.
+The long summer evenings are perfect for a walk after dinner.
+The clocks go back on Sunday so we get an extra hour of sleep.
+The interview panel asked about a time I disagreed with a manager.
+The recruiter said they would get back to me by the end of the week.
+The second round interview involves a take home coding exercise.
+The reference check went through without any issues.
+The offer letter arrived but the start date is a bit too soon.
+The onboarding checklist has forty items and I have done six.
+The probation review is in three months and I am nervous already.
+The salary negotiation went better than I had feared.
+The job description mentioned travel but did not say how much.
+The hiring freeze means the open position will not be filled until spring.
+I finally cleared out the garage and found three identical screwdrivers.
+The toolbox is missing the one size of spanner I actually need.
+The drill battery takes longer to charge than it lasts.
+The ladder is too short to reach the gutters on the back of the house.
+The paint colour looked grey in the shop and lilac on the wall.
+The flat pack wardrobe came with two left doors and no right one.
+The shelf brackets are not quite level and now it bothers me every day.
+The leftover tiles from the bathroom are stacked in the shed.
+The lawn edging took the whole afternoon and I am sunburnt.
+The compost bin smells terrible after the hot weather.
+The quarterly report shows revenue grew but margins shrank.
+The new accounting software imports bank statements automatically.
+The payroll run was late because the approval chain broke.
+The expense policy now requires receipts for anything over twenty.
+The budget forecast assumes no new hires until the second quarter.
+The audit found two invoices paid twice to the same supplier.
+The procurement team negotiated a discount on the cloud bill.
+The finance dashboard refreshes overnight so the figures lag a day.
+The currency swing wiped out the gains from the export deal.
+The grant application requires a detailed breakdown of costs.
+My cousin Aurelio is restoring a vintage motorcycle in his garage.
+Professor Okonkwo's seminar on urban planning was fully booked.
+Dr Lindqvist suggested a second opinion before the surgery.
+The Fitzgerald twins are both studying marine biology in Plymouth.
+Mrs Patterson from next door brought over a tray of brownies.
+Mr Nakamura runs the hardware shop that has everything.
+The Delacroix family moved in across the street last month.
+Captain Reyes gave a talk at the school about rescue helicopters.
+Coach Thompson wants the whole team at practice by seven sharp.
+Nurse Abernathy was incredibly kind during the long night shift.
+The quokka photos from Rottnest Island made the whole office smile.
+The axolotl at the pet shop has a strangely cheerful expression.
+The capybaras at the zoo were lounging in the hot spring.
+The pangolin documentary was both charming and heartbreaking.
+The narwhal exhibit explained how the tusk is actually a tooth.
+The okapi looks like a zebra and a giraffe had a very odd child.
+The echidna waddled across the trail without a care in the world.
+The wombat burrow near the campsite was bigger than I expected.
+The lemurs at the sanctuary stole a volunteer's sandwich.
+The tapir calf at the wildlife park has stripes like a watermelon.
+Tbh I think we should just order pizza and call it a night.
+Idk if the shop is open on Sundays, maybe check online.
+Omg the puppy fell asleep in the laundry basket again.
+Btw the parcel is at the neighbour's house if you get home first.
+Brb grabbing a coffee from downstairs, want one?
+Lol that meme you sent is exactly our team right now.
+Fyi the wifi password changed, it is on the fridge.
+Ngl that movie was way better than I expected.
+Imo the second episode was the strongest of the season.
+Tldr the meeting was long and nothing was decided.
+The reservoir trail is closed for repairs until further notice.
+The ferry timetable changes to the winter schedule next week.
+The cable car to the summit runs every fifteen minutes in summer.
+The scenic railway through the gorge reopens in May.
+The bus replacement service added an hour to the journey.
+The tram line extension finally opened after years of delays.
+The cycle path along the river is flooded near the old bridge.
+The motorway services had the worst coffee I have ever tasted.
+The ring road is gridlocked because of the stadium concert.
+The level crossing barriers were stuck down for twenty minutes.

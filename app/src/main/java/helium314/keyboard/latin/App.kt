@@ -45,6 +45,10 @@ class App : Application() {
         transferOldPinnedClips(this) // todo: remove in a few months, maybe end 2026
         app = this
         Defaults.initDynamicDefaults(this)
+        // Slop Type
+        dev.sloptype.app.remote.RemoteWiring.install(this)
+        dev.sloptype.app.ime.SlopIme.init(this)
+        dev.sloptype.app.daemon.Daemon.schedule(this)
     }
 
     companion object {

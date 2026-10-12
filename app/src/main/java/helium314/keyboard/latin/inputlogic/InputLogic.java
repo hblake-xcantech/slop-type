@@ -6,6 +6,8 @@
 
 package helium314.keyboard.latin.inputlogic;
 
+import dev.sloptype.app.ime.SlopIme;
+
 import static helium314.keyboard.latin.common.SuggestionSpanUtilsKt.getTextWithSuggestionSpan;
 
 import android.graphics.Color;
@@ -737,6 +739,15 @@ public final class InputLogic {
                 // Backspace is a functional key, but it affects the contents of the editor.
                 inputTransaction.setDidAffectContents();
                 break;
+            case KeyCode.MISTAKE:
+                if (event.isKeyRepeat()) {
+                    // hold = plain character delete
+                    handleBackspaceEvent(event, inputTransaction, currentKeyboardScript);
+                } else {
+                    handleMistakeKey(sv, inputTransaction, handler);
+                }
+                inputTransaction.setDidAffectContents();
+                break;
             case KeyCode.SHIFT: {
                 var keyboard = KeyboardSwitcher.getInstance().getKeyboard();
                 if (keyboard != null) {
@@ -1119,7 +1130,9 @@ public final class InputLogic {
             // If it's the first letter, make note of auto-caps state
             if (mWordComposer.isSingleLetter()) {
                 mWordComposer.setCapitalizedModeAtStartComposingTime(inputTransaction.getShiftState());
+                if (SlopIme.INSTANCE.getEnabled() && !mWordComposer.isBatchMode()) SlopIme.INSTANCE.onCursorMoved(mConnection.getTextBeforeCursor(60, 0));
             }
+            if (SlopIme.INSTANCE.getEnabled() && !mWordComposer.isBatchMode()) SlopIme.INSTANCE.onLetter(codePoint, event.getX(), event.getY());
             setComposingTextInternal(getTextWithUnderline(mWordComposer.getTypedWord()), 1);
         } else {
             final boolean swapWeakSpace = tryStripSpaceAndReturnWhetherShouldSwapInstead(event, inputTransaction);
@@ -1169,8 +1182,30 @@ public final class InputLogic {
                     mConnection.getExpectedSelectionEnd(), true /* clearSuggestionStrip */);
         }
         // isComposingWord() may have changed since we stored wasComposing
+        if (SlopIme.INSTANCE.getEnabled() && !mWordComposer.isComposingWord() && SlopIme.INSTANCE.isMistakeArmed()
+                && Constants.CODE_SPACE == codePoint) {
+            // MISTAKE marker followed directly by space: delete the flagged word
+            if (handleMistakeResolution("", handler)) {
+                inputTransaction.requireShiftUpdate(InputTransaction.SHIFT_UPDATE_NOW);
+                return;
+            }
+        }
         if (mWordComposer.isComposingWord()) {
-            if (settingsValues.mAutoCorrectEnabled && ! isInlineEmojiSearchAction()) {
+            if (SlopIme.INSTANCE.getEnabled() && !mWordComposer.isBatchMode() && !isInlineEmojiSearchAction()) {
+                final String separator = shouldAvoidSendingCode ? LastComposedWord.NOT_A_SEPARATOR
+                        : StringUtils.newSingleCodePointString(codePoint);
+                if (SlopIme.INSTANCE.isMistakeArmed()) {
+                    final String replacement = mWordComposer.getTypedWord();
+                    commitTyped(settingsValues, separator);
+                    if (handleMistakeResolution(replacement, handler)) {
+                        inputTransaction.requireShiftUpdate(InputTransaction.SHIFT_UPDATE_NOW);
+                        return;
+                    }
+                } else {
+                    commitSlopDecision(settingsValues, separator, codePoint, handler);
+                    if (mLastComposedWord.canRevertCommit()) inputTransaction.setDidAutoCorrect();
+                }
+            } else if (settingsValues.mAutoCorrectEnabled && ! isInlineEmojiSearchAction()) {
                 final String separator = shouldAvoidSendingCode ? LastComposedWord.NOT_A_SEPARATOR
                         : StringUtils.newSingleCodePointString(codePoint);
                 commitCurrentAutoCorrection(settingsValues, separator, handler);
@@ -1316,6 +1351,7 @@ public final class InputLogic {
                     BackgroundGatheringCache.INSTANCE.removeLast(mWordComposer.getTypedWord());
                 mWordComposer.applyProcessedEvent(event);
                 StatsUtils.onBackspacePressed(1);
+                SlopIme.INSTANCE.onBackspace(true);
             }
             if (mWordComposer.isComposingWord()) {
                 setComposingTextInternal(getTextWithUnderline(mWordComposer.getTypedWord()), 1);
@@ -1327,7 +1363,9 @@ public final class InputLogic {
         } else {
             if (mLastComposedWord.canRevertCommit() && inputTransaction.getSettingsValues().mBackspaceRevertsAutocorrect) {
                 final String lastComposedWord = mLastComposedWord.mTypedWord;
+                final String lastCommittedWord = mLastComposedWord.mCommittedWord.toString();
                 revertCommit(inputTransaction);
+                SlopIme.INSTANCE.onRevert(lastComposedWord, lastCommittedWord);
                 StatsUtils.onRevertAutoCorrect();
                 StatsUtils.onWordCommitUserTyped(lastComposedWord, mWordComposer.isBatchMode());
                 // Restart suggestions when backspacing into a reverted word. This is required for
@@ -1381,6 +1419,7 @@ public final class InputLogic {
 
             // No cancelling of commit/double space/swap: we have a regular backspace.
             // We should backspace one char and restart suggestion if at the end of a word.
+            SlopIme.INSTANCE.onBackspace(false);
             if (mConnection.hasSelection()) {
                 // If there is a selection, remove it.
                 // We also need to unlearn the selected text.
@@ -1771,6 +1810,11 @@ public final class InputLogic {
 
         if (!mWordComposer.isComposingWord() && !settingsValues.mBigramPredictionEnabled) {
             mSuggestionStripViewAccessor.setNeutralSuggestionStrip();
+            return;
+        }
+        if (SlopIme.INSTANCE.getEnabled() && mWordComposer.isComposingWord() && !mWordComposer.isBatchMode()
+                && inputStyle != SuggestedWords.INPUT_STYLE_RECORRECTION && !isInlineEmojiSearchAction()) {
+            mSuggestionStripViewAccessor.setSuggestions(slopGhostSuggestions());
             return;
         }
 
@@ -2843,4 +2887,147 @@ public final class InputLogic {
             mEmojiDictionaryFacilitator = null;
         }
     }
+
+    // ------------------------------------------------------------------ Slop Type
+
+    /** Commit the engine's decision for the composing word (replaces commitCurrentAutoCorrection). */
+    private void commitSlopDecision(final SettingsValues settingsValues, final String separator, final int codePoint,
+            final LatinIME.UIHandler handler) {
+        if (handler.hasPendingUpdateSuggestions()) handler.cancelUpdateSuggestionStrip();
+        final String typedWord = mWordComposer.getTypedWord();
+        final CharSequence before = mConnection.getTextBeforeCursor(240, 0);
+        final dev.sloptype.engine.WordDecision d = SlopIme.INSTANCE.decide(separator, before, typedWord);
+        final String stringToCommit = d.getCommit();
+        final boolean corrected = !typedWord.equals(stringToCommit);
+        commitChosenWord(settingsValues, stringToCommit,
+                corrected ? LastComposedWord.COMMIT_TYPE_DECIDED_WORD : LastComposedWord.COMMIT_TYPE_USER_TYPED_WORD, separator);
+        if (corrected) {
+            mConnection.commitCorrection(new CorrectionInfo(
+                    mConnection.getExpectedSelectionEnd() - stringToCommit.length(), typedWord, stringToCommit));
+            StatsUtils.onWordCommitAutoCorrect(stringToCommit, false);
+        } else {
+            StatsUtils.onWordCommitUserTyped(stringToCommit, false);
+        }
+        if (!d.getRetro().isEmpty()) {
+            SlopIme.INSTANCE.applyRetro(d.getRetro(), mConnection);
+        }
+        SlopIme.INSTANCE.onSeparatorLogged(codePoint);
+        if (codePoint == Constants.CODE_PERIOD || codePoint == '?' || codePoint == '!' || codePoint == Constants.CODE_ENTER) {
+            final CharSequence after = mConnection.getTextBeforeCursor(240, 0);
+            SlopIme.INSTANCE.logTruth(after == null ? "" : after.toString() + separator);
+            SlopIme.INSTANCE.requestSentenceReview(after);
+        }
+    }
+
+    /** Apply a late decision (tier 2 / tier 3) that arrived after the word was committed. */
+    public void applyLateDecision(final dev.sloptype.engine.WordDecision d) {
+        if (d.getRetro().isEmpty()) return;
+        mConnection.beginBatchEdit();
+        try {
+            final boolean wasComposing = mWordComposer.isComposingWord();
+            if (wasComposing) {
+                // keep the composing word intact: retro edits never touch it (wordsBack counts committed words)
+                mConnection.finishComposingText();
+            }
+            SlopIme.INSTANCE.applyRetro(d.getRetro(), mConnection);
+            if (wasComposing) {
+                final String typed = mWordComposer.getTypedWord();
+                final int end = mConnection.getExpectedSelectionEnd();
+                mConnection.setComposingRegion(end - typed.length(), end);
+            }
+        } finally {
+            mConnection.endBatchEdit();
+        }
+    }
+
+    /** MISTAKE key tapped: commit whatever is composing as typed, insert the marker, arm the engine. */
+    private void handleMistakeKey(final SettingsValues settingsValues, final InputTransaction inputTransaction,
+            final LatinIME.UIHandler handler) {
+        if (SlopIme.INSTANCE.isMistakeArmed()) {
+            // second tap: remove the marker and disarm
+            final CharSequence before = mConnection.getTextBeforeCursor(4, 0);
+            if (before != null && before.toString().endsWith(MISTAKE_MARKER)) mConnection.deleteTextBeforeCursor(MISTAKE_MARKER.length());
+            SlopIme.INSTANCE.clearMistake();
+            return;
+        }
+        if (mWordComposer.isComposingWord()) {
+            commitTyped(settingsValues, LastComposedWord.NOT_A_SEPARATOR);
+        }
+        final CharSequence before = mConnection.getTextBeforeCursor(1, 0);
+        final boolean needsSpace = before != null && before.length() > 0 && !Character.isWhitespace(before.charAt(0));
+        mConnection.commitText((needsSpace ? " " : "") + MISTAKE_MARKER, 1);
+        mSpaceState = SpaceState.NONE;
+        SlopIme.INSTANCE.armMistake();
+        inputTransaction.setRequiresUpdateSuggestions();
+    }
+
+    /**
+     * The word typed after the marker is the replacement. Delete "<span> ✗ <replacement><sep>" and
+     * insert the replacement in the span's place. Empty replacement = delete the flagged word.
+     */
+    private boolean handleMistakeResolution(final String replacement, final LatinIME.UIHandler handler) {
+        final CharSequence beforeCs = mConnection.getTextBeforeCursor(300, 0);
+        if (beforeCs == null) { SlopIme.INSTANCE.clearMistake(); return false; }
+        String before = beforeCs.toString();
+        // strip the trailing replacement (+ separator) we just committed, and the marker
+        int cut = before.length();
+        if (!replacement.isEmpty()) {
+            final int idx = before.lastIndexOf(replacement);
+            if (idx < 0) { SlopIme.INSTANCE.clearMistake(); return false; }
+            cut = idx;
+        }
+        String head = before.substring(0, cut);
+        final int markerIdx = head.lastIndexOf(MISTAKE_MARKER);
+        if (markerIdx < 0) { SlopIme.INSTANCE.clearMistake(); return false; }
+        head = head.substring(0, markerIdx);
+        // text before the marker, trailing whitespace removed
+        final String context = head.replaceAll("\\s+$", "");
+        final dev.sloptype.engine.MistakeResolution r = SlopIme.INSTANCE.resolveMistake(replacement, context);
+        if (r == null) { SlopIme.INSTANCE.clearMistake(); return false; }
+        // find the span (last r.wordsBack words of context)
+        final String[] words = context.trim().isEmpty() ? new String[0] : context.trim().split("\\s+");
+        if (words.length < r.getWordsBack()) return false;
+        int spanStart = context.length();
+        int remaining = r.getWordsBack();
+        // walk back over the context to find the start index of the span
+        int i = context.length();
+        while (i > 0 && remaining > 0) {
+            while (i > 0 && Character.isWhitespace(context.charAt(i - 1))) i--;
+            while (i > 0 && !Character.isWhitespace(context.charAt(i - 1))) i--;
+            remaining--;
+        }
+        spanStart = i;
+        final int deleteLen = before.length() - spanStart;
+        final String newText = r.getDeleteOnly() ? "" : r.getNewText() + " ";
+        mConnection.beginBatchEdit();
+        mConnection.deleteTextBeforeCursor(deleteLen);
+        if (!newText.isEmpty()) {
+            mConnection.commitText(newText, 1);
+            mConnection.commitCorrection(new CorrectionInfo(mConnection.getExpectedSelectionEnd() - newText.length(), r.getOldText(), newText));
+        } else {
+            final CharSequence prev = mConnection.getTextBeforeCursor(1, 0);
+            if (prev == null || prev.length() == 0 || !Character.isWhitespace(prev.charAt(0))) mConnection.commitText(" ", 1);
+        }
+        mConnection.endBatchEdit();
+        resetComposingState(true);
+        mSpaceState = SpaceState.WEAK;
+        mSuggestionStripViewAccessor.setNeutralSuggestionStrip();
+        return true;
+    }
+
+    /** Single ghost completion (or the "revert" original) shown in the strip instead of 3 suggestions. */
+    private SuggestedWords slopGhostSuggestions() {
+        final String typed = mWordComposer.getTypedWord();
+        final ArrayList<SuggestedWordInfo> list = new ArrayList<>();
+        final dev.sloptype.engine.Ghost g = SlopIme.INSTANCE.ghost();
+        if (g != null && typed.toLowerCase(Locale.ROOT).equals(g.getPrefix())) {
+            final String full = typed + g.getCompletion();
+            list.add(new SuggestedWordInfo(full, "", SuggestedWordInfo.MAX_SCORE, SuggestedWordInfo.KIND_COMPLETION,
+                    Dictionary.DICTIONARY_USER_TYPED, SuggestedWordInfo.NOT_AN_INDEX, SuggestedWordInfo.NOT_A_CONFIDENCE));
+        }
+        if (list.isEmpty()) return SuggestedWords.getEmptyInstance();
+        return new SuggestedWords(list, null, null, false, false, false, SuggestedWords.INPUT_STYLE_TYPING, SuggestedWords.NOT_A_SEQUENCE_NUMBER);
+    }
+
+    public static final String MISTAKE_MARKER = "\u2717"; // ✗
 }

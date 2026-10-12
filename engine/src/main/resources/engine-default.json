@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "sigmaX": 0.45, "sigmaY": 0.50, "maxKeyDistance": 2.2, "keysPerTouch": 7,
+  "omitPenalty": -4.5, "insertPenalty": -4.5, "doubleTapPenalty": -2.0, "transposePenalty": -3.0,
+  "trailingOmitPenalty": -5.0, "maxEdits": 2,
+  "beamWidth": 48, "maxCandidates": 6,
+  "lmWeight": 1.0, "oovLogProb": -15.0, "bigramLambda": 0.75,
+  "personalBase": -8.0, "personalBoost": 3.0, "screenBoost": 2.5, "screenOovLogProb": -11.0,
+  "keepPolicy": [-1.0, 1.5, -1.0, -0.6, -1.5, 0.0],
+  "novelPolicy": [0.8, 1.2, -3.5, -1.5, -0.3, 0.5, -2.0, 2.0, 1.5],
+  "pendingBand": 0.9, "policyLearningRate": 0.15, "minConfidenceToCorrect": 0.55,
+  "novelTentativeWeight": 0.35, "retypeWeight": 1.0, "lexiconHalfLifeDays": 45,
+  "postureLearningRate": 0.08, "keyOffsetLearningRate": 0.05, "maxPostureOffsetKeys": 0.6, "postureHypotheses": 3,
+  "ghostMinChars": 3, "ghostMargin": 1.2, "ghostMinLogP": -13.0,
+  "retroWindow": 4, "retroMargin": 2.5, "retroMaxEdits": 1,
+  "tier2Enabled": true, "tier2MinChars": 3, "tier2DebounceMs": 120, "tier2TimeoutMs": 450,
+  "tier3Enabled": true, "tier3PauseMs": 1800, "tier3MinWords": 4,
+  "tier2MonthlyCapUsd": 0
+}

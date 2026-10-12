@@ -764,6 +764,7 @@ public final class KeyboardSwitcher {
             Keyboard oldKeyboard = keyboardView.getKeyboard();
             Keyboard newKeyboard = mKeyboardLayoutSet.getKeyboard(keyboardElement);
             keyboardView.setKeyboard(newKeyboard);
+            dev.sloptype.app.ime.SlopIme.INSTANCE.onKeyboardChanged(newKeyboard);
             mCurrentInputView.setKeyboardTopPadding(newKeyboard.mTopPadding);
             keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues.mKeyPreviewPopupOn);
             keyboardView.updateShortcutKey(mRichImm.isShortcutImeReady());

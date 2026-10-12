@@ -1,0 +1,65 @@
+{"id": "common-the", "context": "I think", "typed": "the", "touches": "precise", "expect": "the", "note": "common word, precise -> KEEP"}
+{"id": "common-and", "context": "salt", "typed": "and", "touches": "precise", "expect": "and"}
+{"id": "common-you", "context": "thank", "typed": "you", "touches": "precise", "expect": "you"}
+{"id": "common-that", "context": "I know", "typed": "that", "touches": "precise", "expect": "that"}
+{"id": "common-with", "context": "come", "typed": "with", "touches": "precise", "expect": "with"}
+{"id": "common-have", "context": "we", "typed": "have", "touches": "precise", "expect": "have"}
+{"id": "common-this", "context": "look at", "typed": "this", "touches": "precise", "expect": "this"}
+{"id": "common-from", "context": "a letter", "typed": "from", "touches": "precise", "expect": "from"}
+{"id": "common-they", "context": "I think", "typed": "they", "touches": "precise", "expect": "they"}
+{"id": "common-would", "context": "I", "typed": "would", "touches": "precise", "expect": "would"}
+{"id": "common-there", "context": "over", "typed": "there", "touches": "precise", "expect": "there"}
+{"id": "common-their", "context": "it is", "typed": "their", "touches": "precise", "expect": "their"}
+{"id": "common-about", "context": "talk", "typed": "about", "touches": "precise", "expect": "about"}
+{"id": "common-which", "context": "the one", "typed": "which", "touches": "precise", "expect": "which"}
+{"id": "common-people", "context": "most", "typed": "people", "touches": "precise", "expect": "people"}
+{"id": "common-could", "context": "we", "typed": "could", "touches": "precise", "expect": "could"}
+{"id": "common-should", "context": "we", "typed": "should", "touches": "precise", "expect": "should"}
+{"id": "common-because", "context": "just", "typed": "because", "touches": "precise", "expect": "because"}
+{"id": "common-through", "context": "walk", "typed": "through", "touches": "precise", "expect": "through"}
+{"id": "common-between", "context": "sit", "typed": "between", "touches": "precise", "expect": "between"}
+{"id": "typo-teh", "context": "I think", "typed": "teh", "touches": "precise", "expect": "the", "note": "guard rail from DESIGN.md: teh -> the must correct"}
+{"id": "typo-adn", "context": "salt", "typed": "adn", "touches": "precise", "expect": "and"}
+{"id": "typo-hte", "context": "over", "typed": "hte", "touches": "precise", "expect": "the"}
+{"id": "typo-taht", "context": "I know", "typed": "taht", "touches": "precise", "expect": "that"}
+{"id": "typo-wiht", "context": "come", "typed": "wiht", "touches": "precise", "expect": "with"}
+{"id": "typo-recieve", "context": "did you", "typed": "recieve", "touches": "precise", "expect": "receive"}
+{"id": "typo-seperate", "context": "keep them", "typed": "seperate", "touches": "precise", "expect": "separate"}
+{"id": "typo-definately", "context": "I will", "typed": "definately", "touches": "precise", "expect": "definitely"}
+{"id": "typo-thier", "context": "it is", "typed": "thier", "touches": "precise", "expect": "their"}
+{"id": "typo-becuase", "context": "just", "typed": "becuase", "touches": "precise", "expect": "because"}
+{"id": "typo-null-teh", "context": "I think", "typed": "teh", "touches": "null", "expect": "the", "note": "no touch data (e.g. hardware keyboard / missing touches)"}
+{"id": "typo-null-adn", "context": "salt", "typed": "adn", "touches": "null", "expect": "and"}
+{"id": "typo-null-wiht", "context": "come", "typed": "wiht", "touches": "null", "expect": "with"}
+{"id": "typo-tge", "context": "I think", "typed": "tge", "touches": "precise", "expect": "the", "note": "neighbour slip on a very common word must still correct even when precise"}
+{"id": "novel-omarchy", "context": "I installed", "typed": "omarchy", "touches": "precise", "expect": "omarchy", "note": "precise OOV word must be preserved"}
+{"id": "novel-flexnet", "context": "the", "typed": "flexnet", "touches": "precise", "expect": "flexnet"}
+{"id": "novel-zxlib", "context": "link against", "typed": "zxlib", "touches": "precise", "expect": "zxlib"}
+{"id": "novel-hblake", "context": "ping", "typed": "hblake", "touches": "precise", "expect": "hblake"}
+{"id": "novel-xcantech", "context": "the", "typed": "xcantech", "touches": "precise", "expect": "xcantech"}
+{"id": "novel-sloptype", "context": "I use", "typed": "sloptype", "touches": "precise", "expect": "sloptype"}
+{"id": "novel-heliboard", "context": "forked from", "typed": "heliboard", "touches": "precise", "expect": "heliboard"}
+{"id": "novel-kubectl", "context": "run", "typed": "kubectl", "touches": "precise", "expect": "kubectl"}
+{"id": "novel-asdf", "context": "install with", "typed": "asdf", "touches": "precise", "expect": "asdf"}
+{"id": "novel-name-okonkwo", "context": "ask", "typed": "Okonkwo", "touches": "precise", "expect": "Okonkwo", "note": "capitalised name, exact-case match required"}
+{"id": "novel-tbh", "context": "", "typed": "tbh", "touches": "precise", "expect": "tbh", "note": "chat abbreviation typed precisely"}
+{"id": "personal-hblake-sloppy", "context": "ping", "typed": "hblake", "touches": "sloppy", "expect": "hblake", "personal": ["hblake"], "note": "personal-lexicon word typed sloppily must resolve to it"}
+{"id": "personal-xcantech-sloppy", "context": "the", "typed": "xcantech", "touches": "sloppy", "expect": "xcantech", "personal": ["xcantech"]}
+{"id": "personal-omarchy-null", "context": "I installed", "typed": "omarchy", "touches": "null", "expect": "omarchy", "personal": ["omarchy"], "note": "personal word with no touch data must be kept"}
+{"id": "sloppy-the", "context": "I think", "typed": "the", "touches": "sloppy", "expect": "the", "note": "sloppy taps around a common word must be fixed"}
+{"id": "sloppy-and", "context": "salt", "typed": "and", "touches": "sloppy", "expect": "and"}
+{"id": "sloppy-you", "context": "thank", "typed": "you", "touches": "sloppy", "expect": "you"}
+{"id": "sloppy-that", "context": "I know", "typed": "that", "touches": "sloppy", "expect": "that"}
+{"id": "sloppy-with", "context": "come", "typed": "with", "touches": "sloppy", "expect": "with"}
+{"id": "sloppy-have", "context": "we", "typed": "have", "touches": "sloppy", "expect": "have"}
+{"id": "sloppy-this", "context": "look at", "typed": "this", "touches": "sloppy", "expect": "this"}
+{"id": "sloppy-from", "context": "a letter", "typed": "from", "touches": "sloppy", "expect": "from"}
+{"id": "sloppy-they", "context": "I think", "typed": "they", "touches": "sloppy", "expect": "they"}
+{"id": "sloppy-there", "context": "over", "typed": "there", "touches": "sloppy", "expect": "there"}
+{"id": "sloppy-about", "context": "talk", "typed": "about", "touches": "sloppy", "expect": "about"}
+{"id": "sloppy-which", "context": "the one", "typed": "which", "touches": "sloppy", "expect": "which"}
+{"id": "sloppy-would", "context": "I", "typed": "would", "touches": "sloppy", "expect": "would"}
+{"id": "sloppy-people", "context": "most", "typed": "people", "touches": "sloppy", "expect": "people"}
+{"id": "sloppy-because", "context": "just", "typed": "because", "touches": "sloppy", "expect": "because"}
+{"id": "sloppy-tomorrow", "context": "see you", "typed": "tomorrow", "touches": "sloppy", "expect": "tomorrow"}
+{"id": "sloppy-morning", "context": "this", "typed": "morning", "touches": "sloppy", "expect": "morning"}
