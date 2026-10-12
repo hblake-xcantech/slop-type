@@ -44,7 +44,7 @@ data class EngineConfig(
     val screenOovLogProb: Float = -11.0f,
     // ---- policy (in-vocabulary literal) ----
     /** logistic weights: bias, margin, precision, literalLogP/10, bestEdits, len/10 */
-    val keepPolicy: List<Float> = listOf(-1.0f, 1.5f, -1.0f, -0.6f, -1.5f, 0.0f),
+    val keepPolicy: List<Float> = listOf(-1.8f, 1.5f, -1.0f, -0.6f, -1.5f, 0.0f),
     // ---- policy (OOV literal): bias, margin/5, precision, structEdits, len/10, contextSupport, capitalizedMidSentence, bestIsPersonal, wordlikenessGain ----
     val novelPolicy: List<Float> = listOf(0.8f, 1.2f, -3.5f, -1.5f, -0.3f, 0.5f, -2.0f, 2.0f, 1.5f),
     /** |logit| below this is "ambiguous" → tier 2 (if available) */

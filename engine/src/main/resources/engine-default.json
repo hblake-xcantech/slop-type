@@ -6,7 +6,7 @@
   "beamWidth": 48, "maxCandidates": 6,
   "lmWeight": 1.0, "oovLogProb": -15.0, "bigramLambda": 0.75,
   "personalBase": -8.0, "personalBoost": 3.0, "screenBoost": 2.5, "screenOovLogProb": -11.0,
-  "keepPolicy": [-1.0, 1.5, -1.0, -0.6, -1.5, 0.0],
+  "keepPolicy": [-1.8, 1.5, -1.0, -0.6, -1.5, 0.0],
   "novelPolicy": [0.8, 1.2, -3.5, -1.5, -0.3, 0.5, -2.0, 2.0, 1.5],
   "pendingBand": 0.9, "policyLearningRate": 0.15, "minConfidenceToCorrect": 0.55,
   "novelTentativeWeight": 0.35, "retypeWeight": 1.0, "lexiconHalfLifeDays": 45,

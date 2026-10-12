@@ -68,9 +68,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: chmod +x gradlew
       - name: Decode signing keystore
-        if: ${{ secrets.SLOPTYPE_KEYSTORE_BASE64 != '' }}
+        env:
+          KS_B64: ${{ secrets.SLOPTYPE_KEYSTORE_BASE64 }}
+        if: env.KS_B64 != ''
         run: |
-          echo "${{ secrets.SLOPTYPE_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/sloptype-release.jks"
+          echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/sloptype-release.jks"
           echo "SLOPTYPE_KEYSTORE=$RUNNER_TEMP/sloptype-release.jks" >> "$GITHUB_ENV"
           echo "SLOPTYPE_KEYSTORE_PASSWORD=${{ secrets.SLOPTYPE_KEYSTORE_PASSWORD }}" >> "$GITHUB_ENV"
           echo "SLOPTYPE_KEY_ALIAS=${{ secrets.SLOPTYPE_KEY_ALIAS }}" >> "$GITHUB_ENV"

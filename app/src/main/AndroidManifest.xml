@@ -67,6 +67,11 @@ SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
             <meta-data android:name="android.accessibilityservice" android:resource="@xml/screen_context_service" />
         </service>
 
+        <!-- WorkManager foreground service type for the expedited daemon run -->
+        <service android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
+
         <receiver android:name="dev.sloptype.app.daemon.DaemonReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="dev.sloptype.DAEMON_RUN_NOW" />
