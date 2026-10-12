@@ -17,3 +17,11 @@
 -keep class dev.sloptype.** { *; }
 -keepclassmembers class dev.sloptype.** { *; }
 -dontwarn dev.sloptype.**
+
+# WorkManager / Room: generated classes are reflectively constructed
+-keep class androidx.work.** { *; }
+-keep class androidx.room.** { *; }
+-keep class * extends androidx.room.RoomDatabase { <init>(); }
+-keep class androidx.startup.** { *; }
+-keep class kotlinx.serialization.** { *; }
+-keepclassmembers class dev.sloptype.** { *** Companion; }
