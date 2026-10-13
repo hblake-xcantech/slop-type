@@ -22,7 +22,7 @@ object RemoteWiring {
     private val json = Json { ignoreUnknownKeys = true; isLenient = true }
 
     /** Keys read from router.json beyond what the engine's RouterConfig knows. */
-    data class RouterExtras(val tier2Provider: String = "none", val tier2Model: String = "", val tier2ServiceTier: String = "", val tier3Model: String = "", val tier3ReasoningEffort: String = "low")
+    data class RouterExtras(val tier2Provider: String = "none", val tier2Model: String = "", val tier2ServiceTier: String = "", val tier3Model: String = "", val tier3ReasoningEffort: String = "low", val tier2BaseUrl: String = "")
 
     fun routerExtras(ctx: Context): RouterExtras {
         val f = File(SlopPaths.configs(ctx), "router.json")
@@ -40,6 +40,7 @@ object RemoteWiring {
         fun s3(k: String): String = (t3?.get(k) as? JsonPrimitive)?.contentOrNull ?: ""
         return RouterExtras(
             tier2Provider = s("tier2Provider").ifBlank { s2("provider") }.ifBlank { "none" }.lowercase(),
+            tier2BaseUrl = s("tier2BaseUrl").ifBlank { s2("baseUrl") },
             tier2Model = s("tier2Model").ifBlank { s2("model") },
             tier2ServiceTier = s("tier2ServiceTier").ifBlank { s2("serviceTier") },
             tier3Model = s("tier3Model").ifBlank { s3("model") },
@@ -50,7 +51,7 @@ object RemoteWiring {
     fun buildTier2(ctx: Context, cfg: EngineConfig): Tier2Client? {
         val x = routerExtras(ctx)
         if (x.tier2Provider !in Tier2Protocol.PROVIDERS) return null
-        return Tier2Client(ctx, cfg, x.tier2Provider, x.tier2Model, x.tier2ServiceTier.ifBlank { null })
+        return Tier2Client(ctx, cfg, x.tier2Provider, x.tier2Model, x.tier2ServiceTier.ifBlank { null }, x.tier2BaseUrl.ifBlank { null })
     }
 
     fun buildTier3(ctx: Context): Tier3Client? {

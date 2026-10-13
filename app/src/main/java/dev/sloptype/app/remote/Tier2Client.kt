@@ -248,6 +248,8 @@ class Tier2Client(
     val provider: String,
     modelOverride: String = "",
     private val serviceTier: String? = null,
+    /** endpoint override, e.g. Jev through Vercel AI Gateway: https://ai-gateway.vercel.sh/typesafe/v1/systemone */
+    private val baseUrlOverride: String? = null,
 ) : Tier2Classifier {
     private val app = ctx.applicationContext
     val model: String = modelOverride.ifBlank { Tier2Protocol.defaultModel(provider) }
@@ -289,7 +291,7 @@ class Tier2Client(
         when (provider) {
             Tier2Protocol.PROVIDER_JEV -> {
                 body = Tier2Protocol.jevBody(req, model)
-                resp = Http.postJson(Tier2Protocol.JEV_URL, body, headers, timeout)
+                resp = Http.postJson(baseUrlOverride?.takeIf { it.isNotBlank() } ?: Tier2Protocol.JEV_URL, body, headers, timeout)
                 parsed = if (resp.ok) Tier2Protocol.parseJev(resp.body) else null
             }
             Tier2Protocol.PROVIDER_OPENAI_DECISIONS -> {
