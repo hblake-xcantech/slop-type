@@ -26,6 +26,8 @@ object SlopIme {
     @Volatile private var fieldActive = false
     private var lastDown: Touch? = null
     private var lastDownAt = 0L
+    /** recent down touches (rollover typing: the next finger lands before the previous key fires) */
+    private val recentDowns = ArrayDeque<Touch>()
     private var geometryId: String? = null
     private var pendingAfterInstall = false
     private var lastSave = 0L
@@ -110,7 +112,11 @@ object SlopIme {
         val isDown = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN
         val key = keyboard?.getKey(x.toInt(), y.toInt())?.firstOrNull()
         val code = key?.code ?: 0
-        if (isDown) { lastDown = Touch(x, y, t, p, s, code); lastDownAt = System.currentTimeMillis() }
+        if (isDown) {
+            val touch = Touch(x, y, t, p, s, code)
+            lastDown = touch; lastDownAt = System.currentTimeMillis()
+            synchronized(recentDowns) { recentDowns.addLast(touch); while (recentDowns.size > 8) recentDowns.removeFirst() }
+        }
         if (!sensitive) SlopRuntime.logger.event("touch", mapOf("t" to t, "x" to x, "y" to y, "p" to p, "s" to s, "a" to (if (isDown) "d" else "u"), "code" to code))
     }
 
@@ -123,10 +129,20 @@ object SlopIme {
     fun onLetter(codePoint: Int, keyX: Int, keyY: Int) {
         if (!fieldActive) return
         val e = engine()
-        val down = lastDown?.takeIf { System.currentTimeMillis() - lastDownAt < 1500 }
-        val touch = if (down != null) down.copy(code = codePoint)
-            else if (keyX >= 0 && keyY >= 0) Touch(keyX.toFloat(), keyY.toFloat(), System.currentTimeMillis(), 0f, 0f, codePoint)
-            else null
+        // The event's x/y are the real touch coordinates of THIS key press (PointerTracker passes
+        // them). Use them, and only borrow pressure/size/time from the matching down event.
+        val lower = Character.toLowerCase(codePoint)
+        val down: Touch? = synchronized(recentDowns) {
+            recentDowns.lastOrNull { d ->
+                (Character.toLowerCase(d.code) == lower) &&
+                    (keyX < 0 || (kotlin.math.abs(d.x - keyX) < 80f && kotlin.math.abs(d.y - keyY) < 80f))
+            }?.also { recentDowns.remove(it) }
+        }
+        val touch = when {
+            keyX >= 0 && keyY >= 0 -> Touch(keyX.toFloat(), keyY.toFloat(), down?.t ?: System.currentTimeMillis(), down?.pressure ?: 0f, down?.size ?: 0f, codePoint)
+            down != null -> down.copy(code = codePoint)
+            else -> null
+        }
         lastDown = null
         e?.onKey(codePoint, touch)
         if (!sensitive) SlopRuntime.logger.event("key", mapOf("code" to codePoint, "x" to keyX, "y" to keyY, "repeat" to false))

@@ -99,17 +99,6 @@ class DaemonReceiver : BroadcastReceiver() {
      * resolved reflectively so this package compiles even if that class is absent.
      */
     private fun benchRun(ctx: Context) {
-        try {
-            val cls = Class.forName("dev.sloptype.app.remote.Benchmark")
-            val instance = cls.getField("INSTANCE").get(null)
-            val m = cls.getMethod("runAsync", Context::class.java)
-            SlopRuntime.init(ctx)
-            m.invoke(instance, ctx)
-            Log.i(TAG, "benchmark started")
-        } catch (e: ClassNotFoundException) {
-            Log.w(TAG, "BENCH_RUN: dev.sloptype.app.remote.Benchmark is not in this build")
-        } catch (e: ReflectiveOperationException) {
-            Log.w(TAG, "BENCH_RUN: Benchmark.runAsync(Context) not callable: $e")
-        }
+        try { dev.sloptype.app.remote.Benchmark.runAsync(ctx) } catch (e: Throwable) { Log.w(TAG, "BENCH_RUN failed: $e") }
     }
 }

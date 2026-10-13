@@ -6,6 +6,8 @@
 
 package helium314.keyboard.keyboard;
 
+import helium314.keyboard.latin.common.Constants;
+
 /**
  * This class handles key detection.
  */
@@ -99,6 +101,16 @@ public class KeyDetector {
                     || key.getCode() > primaryKey.getCode()) {
                 minDistance = distance;
                 primaryKey = key;
+            }
+        }
+        // Slop Type: a tap below the visual bottom of a letter key, inside the spacebar's column,
+        // is a space (the row gap used to resolve to the letter above, turning "this is" into "thisbis").
+        if (primaryKey != null && primaryKey.getCode() > Constants.CODE_SPACE
+                && touchY > primaryKey.getY() + primaryKey.getHeight()) {
+            final Key space = mKeyboard.getKey(Constants.CODE_SPACE);
+            if (space != null && touchX >= space.getX() && touchX < space.getX() + space.getWidth()
+                    && touchY < space.getY() + space.getHeight()) {
+                return space;
             }
         }
         return primaryKey;
